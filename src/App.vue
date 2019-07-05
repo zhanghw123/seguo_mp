@@ -61,11 +61,24 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 page {
   height: 100%;
 }
-
+swiper {
+      margin-top: 20rpx;
+}
+.le-img {
+  width: 100%;
+  display: block;
+  transform: scale(0.8);
+  border-radius: 15rpx;
+  transition: all 0.3s ease;
+}
+.le-img.le-active {
+  transform: scale(1);
+  z-index: 10
+}
 /* this rule will be remove */
 * {
   transition: width 2s;

@@ -1,7 +1,31 @@
 <template>
   <div class="container">
     
-    <div class="a">{{text}}</div>
+    <swiper class="swiper"  
+              @change="swiperChange"
+              :previous-margin="50"
+              :next-margin="50"
+              :indicator-dots="false" 
+              :autoplay="true" 
+              :interval="5000" 
+              :style="{height:swiperH}"
+              :duration="800">
+              
+          <swiper-item v-for="(item, index) in bannerList"
+                        @click="goBannerList"
+                        :key="index">
+              <image  @load="getHeight"
+                      
+                      :style="{height:swiperH}"
+                      :class="{ 'le-active': nowIdx===index }"  
+                      :src="item.image" class="le-img" />
+          </swiper-item>
+          
+        </swiper>
+    <div class="appointment">
+      <div class="circle">预</div>
+      <div>个人写真拍摄</div>
+    </div>    
   </div>
 </template>
 
@@ -11,7 +35,11 @@ import fly from "@/http/config";
 export default {
   data () {
     return {
-     text: '我是首页'
+      text: '我是首页',
+      bannerList: [],
+      swiperH: "", //swiper高度
+      nowIdx: 0, //当前swiper索引
+
     }
   },
   onLoad() {
@@ -19,6 +47,7 @@ export default {
       title: '加载中',
     })
     this.login();
+    this.getBanner();
   },
 
   methods: {
@@ -84,6 +113,27 @@ export default {
         wx.hideLoading();
       })
     },
+    getBanner() {
+      let params = {
+        url: '/get_rotation_chart/',
+      }
+      get(params).then(res => {
+        this.bannerList = res
+      })
+    },
+    getHeight(e) {
+      
+      let winWid = wx.getSystemInfoSync().windowWidth - 2 * 50; //获取当前屏幕的宽度
+      let imgh = e.target.height; //图片高度
+      let imgw = e.target.width;
+      let h = winWid * imgh / imgw ;
+      let sH = (h-20) + "px"
+
+      this.swiperH = '188px' ;
+    },
+    swiperChange(e) {
+      this.nowIdx = e.target.current;
+    },
   },
 
   created () {
@@ -99,8 +149,27 @@ export default {
   display: flex;
   background: #eff3f6;
   flex-direction: column;
-  .a {
-    color: red;
+  box-sizing: border-box;
+
+  .appointment {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 90%;
+    margin: 15px auto;
+    height: 50px;
+    background: #a8a9ab;
+    border-radius: 25px;
+
+    .circle {
+      width: 40px;
+      height: 40px;
+      background: #fff;
+      border-radius: 20px;
+      text-align: center;
+      line-height: 40px;
+      margin: 0 15px;
+    }
   }
 
 }

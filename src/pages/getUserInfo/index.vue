@@ -19,7 +19,10 @@ export default {
       // console.log(e.mp.detail.rawData)
       if (e.mp.detail.rawData){
         //用户按了允许授权按钮
-        this.$router.push({ path: `../index1/main`, query: {} });
+        //this.$router.push({ path: `../index/main`, query: {} });
+        wx.switchTab({
+          url: `../index/main`
+        })
       } else {
         //用户按了拒绝按钮
       }

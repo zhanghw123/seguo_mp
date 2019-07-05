@@ -1,9 +1,8 @@
 {
   "pages": [
-    "pages/index/main", 
     "pages/check/main",
     "pages/getUserInfo/main",
-    
+    "pages/index/main",
     "pages/combo/main",
     "pages/mine/main",
     "pages/logs/main",

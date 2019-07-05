@@ -96,7 +96,7 @@ export default {
           if (res.authSetting['scope.userInfo']) {
             //用户已经授权过
            console.log('用户已经授权过')
-            wx.redirectTo({
+            wx.switchTab({
               url: `../index/main`
             })
            // that.$router.push({ path: `../index1/main`, query: {} });

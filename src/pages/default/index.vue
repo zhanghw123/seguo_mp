@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
      {{text}}
   </div>
 </template>
@@ -19,6 +19,13 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background: #eff3f6;
+  flex-direction: column;
+  box-sizing: border-box;
+}
 </style>

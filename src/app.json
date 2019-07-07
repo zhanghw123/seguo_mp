@@ -1,12 +1,15 @@
 {
   "pages": [
+    "pages/mine/main",
+    "pages/photoAlbum/main",
+    "pages/photographerWorks/main",
     "pages/check/main",
     "pages/getUserInfo/main",
     "pages/index/main",
     "pages/combo/main",
-    "pages/mine/main",
-    "pages/logs/main",
-    "pages/counter/main"
+    "pages/userInfo/main"
+    
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -21,7 +24,7 @@
     "borderStyle": "white",
 
     "list": [{
-      "text": "首页",
+      "text": "预约",
       "pagePath": "pages/index/main",
       "iconPath": "static/tabs/tab1.png",
       "selectedIconPath": "static/tabs/tab1-active.png"

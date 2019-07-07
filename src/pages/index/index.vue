@@ -12,7 +12,7 @@
               :duration="800">
               
           <swiper-item v-for="(item, index) in bannerList"
-                        @click="goBannerList"
+                        @click="goPhotoer"
                         :key="index">
               <image  @load="getHeight"
                       
@@ -25,7 +25,25 @@
     <div class="appointment">
       <div class="circle">预</div>
       <div>个人写真拍摄</div>
-    </div>    
+    </div> 
+    <div class="photo-album">
+      <div class="album-item">
+        <img src="/static/images/timg1.jpg" alt="">
+        <div class="album-name">小清新</div>
+      </div>
+      <div class="album-item">
+        <img src="/static/images/timg2.jpg" alt="">
+        <div class="album-name">日系</div>
+      </div>
+      <div class="album-item">
+        <img src="/static/images/timg3.jpg" alt="">
+        <div class="album-name">古风</div>
+      </div>
+      <div class="album-item">
+        <img src="/static/images/timg4.jpg" alt="">
+        <div class="album-name">复古</div>
+      </div>
+    </div>   
   </div>
 </template>
 
@@ -51,6 +69,10 @@ export default {
   },
 
   methods: {
+    goPhotoer() {
+      this.$router.push({ path: `../${'photographerWorks/main'}`});
+    },
+
     login() {
       let code ;
       let encryptedData;
@@ -168,7 +190,39 @@ export default {
       border-radius: 20px;
       text-align: center;
       line-height: 40px;
-      margin: 0 15px;
+      margin: 0 10px;
+    }
+  }
+  .photo-album {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    .album-item {
+      width: 48%;
+      height: 120px;
+      background: #ccc;
+      margin-bottom: 15px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 5px;
+      box-shadow:-8rpx 8rpx 10rpx rgba(15,16,15,0.2);
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .album-name{
+        font-size: 12px;
+        color: #fff;
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+      }
     }
   }
 

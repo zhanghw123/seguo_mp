@@ -2,36 +2,36 @@
   <div class="container">
     
     <swiper class="swiper"  
-              @change="swiperChange"
-              :previous-margin="50"
-              :next-margin="50"
-              :indicator-dots="false" 
-              :autoplay="true" 
-              :interval="5000" 
-              :style="{height:swiperH}"
-              :duration="800">
-              
-          <swiper-item v-for="(item, index) in bannerList"
-                        @click="goPhotoer"
-                        :key="index">
-              <image  @load="getHeight"
-                      
-                      :style="{height:swiperH}"
-                      :class="{ 'le-active': nowIdx===index }"  
-                      :src="item.image" class="le-img" />
-          </swiper-item>
+          @change="swiperChange"
+          :previous-margin="50"
+          :next-margin="50"
+          :indicator-dots="false" 
+          :autoplay="true" 
+          :interval="5000" 
+          :style="{height:swiperH}"
+          :duration="800">
           
-        </swiper>
-    <div class="appointment">
+      <swiper-item v-for="(item, index) in bannerList"
+                    @click="goPhotoer"
+                    :key="index">
+          <image  @load="getHeight"
+                  
+                  :style="{height:swiperH}"
+                  :class="{ 'le-active': nowIdx===index }"  
+                  :src="item.image" class="le-img" />
+      </swiper-item>
+      
+    </swiper>
+    <div class="appointment" @click="goMyyuyue()">
       <div class="circle">预</div>
       <div>个人写真拍摄</div>
     </div> 
     <div class="photo-album">
-      <div class="album-item">
+      <div class="album-item" @click="goComInfo()">
         <img src="/static/images/timg1.jpg" alt="">
         <div class="album-name">小清新</div>
       </div>
-      <div class="album-item">
+      <div class="album-item" @click="goComInfo()">
         <img src="/static/images/timg2.jpg" alt="">
         <div class="album-name">日系</div>
       </div>
@@ -69,10 +69,15 @@ export default {
   },
 
   methods: {
+    goComInfo() {
+      this.$router.push({ path: `../${'photoAlbum/main'}`});
+    },
     goPhotoer() {
       this.$router.push({ path: `../${'photographerWorks/main'}`});
     },
-
+    goMyyuyue() {
+      this.$router.push({ path: `../${'comboAppointment/main'}`});
+    },
     login() {
       let code ;
       let encryptedData;
@@ -129,10 +134,26 @@ export default {
           key:"jwt",
           data:res.access,
           success:() => {
-            //this.getUserInfo();
+            this.getUserInfo();
           }
         })
         wx.hideLoading();
+      })
+    },
+    getUserInfo() {
+      
+      let params = {
+        url: '/get_student/'
+       
+      }
+      post(params).then(res=>{
+        
+        wx.setStorage({
+          key:"userInfo",
+          data: res//JSON.stringify(res)
+        })
+      }).catch(res=>{
+        console.log(res)
       })
     },
     getBanner() {
@@ -208,7 +229,7 @@ export default {
       position: relative;
       overflow: hidden;
       border-radius: 5px;
-      box-shadow:-8rpx 8rpx 10rpx rgba(15,16,15,0.2);
+      box-shadow:-8rpx 8rpx 10rpx rgba(3, 3, 3, 0.2);
       img {
         position: absolute;
         top: 0;

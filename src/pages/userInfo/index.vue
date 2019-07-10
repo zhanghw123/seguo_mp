@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <div class="top">
-      <div class="title">个人资料</div>
+      <!-- <div class="title">个人资料</div> -->
       <img class="topbg" src="/static/images/topbg.png" />
       <div class="avatar">
         <open-data   type="userAvatarUrl"></open-data>
@@ -9,36 +9,100 @@
       
     </div>
     <div class="main">
-      <div class="userInfo-item">
-        <div class="item-lable">姓名</div>
-        <div class="item-box">
-          <!-- @input="nameInput" :value="modelName" -->
-          <input  v-model.lazy="modelName" class="ipt" type="text" placeholder="请输入姓名"/>
-        </div>
+    
+     <div class="from-item">
+       <div class="item-lable">姓名</div>
+       <div class="item-box">
+         <input class="ipt" 
+                v-model="modelName"
+                
+                placeholder="请输入姓名"
+                :disabled="isReadOnly"
+                type="text"/>
+       </div>
+     </div>
+     <div class="from-item">
+       <div class="item-lable">性别</div>
+       <div class="item-box">
+        <picker @change="sexChange" :value="index" :range="sexArray" range-key="value">
+          <view class="picker sexValue"> {{sexValue}}</view>
+        </picker>
+        <!-- <radio-group class="radio-group radioBox" @change="radioChange">
+            <radio class="radio radio-item" v-for="(item,index) in items" :key="index"  :value="item.name" :checked="item.checked">
+                <text>{{item.value}}</text>
+            </radio>
+        </radio-group> -->
+
+       </div>
+     </div>
+    <div class="from-item">
+      <div class="item-lable">手机号</div>
+      <div class="item-box">
+        <input class="ipt" 
+             
+              @blur="phoneHandle"
+              v-model="modelPhone"
+              :disabled="isReadOnly"
+              placeholder="请输入手机号"
+              type="number"/>
+      </div>
+    </div>
+    <div class="from-item">
+      <div class="item-lable">学校</div>
+      <div class="item-box">
+        <input class="ipt"
+               
+              v-model="modelSchool"
+              :disabled="isReadOnly"
+              placeholder="请输入学校名称"
+              type="text"/>
+      </div>
+    </div>
+    <div class="from-item">
+      <div class="item-lable">专业</div>
+      <div class="item-box">
+        <input class="ipt" 
+              
+              v-model="modelSpeciality"
+             :disabled="isReadOnly"
+              placeholder="请输入专业名称"
+              type="text"/>
+      </div>
+    </div>
+    <div class="from-item">
+      <div class="item-lable">微信</div>
+      <div class="item-box">
+        <input class="ipt"
+              
+              v-model="modelWechat"
+              :disabled="isReadOnly"
+              placeholder="请输入微信"
+              type="text"/>
+      </div>
+    </div>
+    <!-- <div class="textarea-item">
+      <div class="textarea-lable">个人经历</div>
+      <div class="textarea-box">
+       <textarea :adjust-position="true" :show-confirm-bar="false"  :disabled="isReadOnly" v-model="modelInfo"></textarea>
+      </div>
+    </div> -->
+    <!-- <div @click="goMyyuyue" class="from-item">
+      <div class="item-lable">查看我的预约信息</div>
+      <div class="item-box">
         
       </div>
-      <div class="userInfo-item">
-        <div class="item-lable">性别</div>
-        <div class="item-box">
-          <radio-group class="radio-group radioBox" @change="radioChange">
-              <radio class="radio radio-item" v-for="(item,index) in sexItems" :key="index"  :value="item.name" :checked="item.checked">
-                  <text>{{item.value}}</text>
-              </radio>
-          </radio-group>
-        </div>
-        
-      </div>
-      <div v-show="!isReadOnly"  @click="testUserInfo" class="complete-btn">
+    </div> -->
+     <div v-show="!isReadOnly"  @click="postUserInfo" class="complete-btn">
        <img class="btn" src="/static/images/btn1.png"/>
        <div class="text">修改信息</div>
      </div>
-     
+  
     </div>
       
-    <div  class="bottom">
-      <img  src="/static/images/bottombg.png" />
+    <!-- <div  class="bottom">
+      <img  src="/static/img/bottombg.png" />
       
-    </div>
+    </div> -->
     
   </div>
 </template>
@@ -52,24 +116,26 @@ export default {
 
   data() {
     return {
+      
       phoneFlag: false,
       xingbie: '',
       isReadOnly:false,
       user_id: '',
       modelName: '',
-      //  modelSex: true,
+      modelSex: '',
       modelPhone: '',
       modelSchool: '',
       modelSpeciality: '',
       modelWechat: '',
       modelInfo: '',
-      sexItems: [
+      
+      items: [
         
         {name: true, value: '男'},
         {name: false, value: '女'}
       ],
-      items: [
-        
+      sexValue: '',
+      sexArray:[
         {name: true, value: '男'},
         {name: false, value: '女'}
       ]
@@ -77,7 +143,6 @@ export default {
   },
   onShow() {
     this.getUserInfo();
-    //this.sexTest();
   },
   onLoad() {
     
@@ -92,20 +157,10 @@ export default {
   },
  
   methods: {
-    testUserInfo() {
-      console.log(this.testName)
-    },
-    nameInput(e){
-      // console.log(e.target.value)
-      // this.modelName = e.target.value
-      this.testName = e.target.value
-    },
-    sexTest() {
-      this.sexItems= [
-        {name: true, value: '男',checked: true},
-        {name: false, value: '女'},
-        
-      ]
+    sexChange(e) {
+      console.log(e)
+      this.sexValue = this.sexArray[e.target.value].value
+      this.modelSex = this.sexArray[e.target.value].name
     },
     phoneHandle(e) {
       console.log(e.target.value)
@@ -148,24 +203,26 @@ export default {
         this.modelInfo = res.student_info
         if(res.student_sex) {//男
           //this.items[1].checked= true
-          this.sexItems= [
-            {name: true, value: '男',checked: true},
-            {name: false, value: '女'},
+          this.sexValue = '男'
+          // this.items= [
+          //   {name: true, value: '男',checked: true},
+          //   {name: false, value: '女'},
             
-          ]
+          // ]
         }else{//女
           //this.items[0].checked= true
-          this.sexItems= [
-            {name: true, value: '男'},
-            {name: false, value: '女',checked: true},
+          this.sexValue = '女'
+          // this.items= [
+          //   {name: true, value: '男'},
+          //   {name: false, value: '女',checked: true},
             
-          ]
+          // ]
         }
 
       })
     },
     postUserInfo() {
-      if(this.modelName!=""&&this.modelPhone!=""&&this.modelSchool!=""&&this.modelSpeciality!=""&&this.modelWechat!="") {
+      if(this.testName!=""&&this.testPhone!=""&&this.testSchool!=""&&this.testSpeciality!=""&&this.testWechat!="") {
         let params = {
           url: `/edit_student_info/${this.user_id}/`,
           data: {
@@ -180,6 +237,7 @@ export default {
           }
         
         }
+        console.log(params.data)
         postJSON(params).then(res=>{ 
           console.log(res)
           wx.showModal({
@@ -226,18 +284,26 @@ export default {
       
 
     },
-   changeSex(value) {
-     console.log(value)
-     
-     
-     
-   },
     radioChange(e) {
      // this.xingbie = '123'
-       this.modelSex = e.target.value
-    
-     
-    }
+      this.modelSex = e.target.value
+    },
+
+    nameInput(e){
+      this.testName = e.target.value
+    },
+    phoneInput(e){
+      this.testPhone = e.target.value
+    },
+    schoolInput(e){
+      this.testSchool = e.target.value
+    },
+    specialityInput(e){
+      this.testSpeciality = e.target.value
+    },
+    wechatInput(e){
+      this.testWechat = e.target.value
+    },
   },
 };
 </script>
@@ -303,11 +369,11 @@ export default {
     // flex: 1;
     // overflow: auto;
     margin-top: 20px;
-    .userInfo-item {
+    .from-item {
       width:85%;
       margin: 10px auto;
-      height: 90rpx;
-      line-height: 90rpx;
+      height: 100rpx;
+      line-height: 100rpx;
       font-size: 16px;
       border-bottom: 1px solid #fae29d;
       margin-bottom: 5px;
@@ -321,9 +387,20 @@ export default {
         height: 100%;
         color: #1b4a5d;
         float: right;
+        .sexValue {
+          text-align: right;
+        }
+        .radioBox {
+          text-align: right;
+        }
+        .radio-item {
+        
+          
+          margin: 0 10px;
+        }
         .ipt {
           text-align: right;
-          height: 90%;
+          height: 100%;
         }
       }
     }
@@ -355,7 +432,7 @@ export default {
       text-align: center;
       line-height: 100rpx;
       
-      // box-shadow:8rpx 8rpx 8rpx rgba(15,16,15,0.13);
+      // box-shadow:8rpx 8rpx 8rpx rgba(15,15,15,0.13);
       position: relative;
       .btn {
         position: absolute;

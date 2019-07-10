@@ -1,53 +1,57 @@
 <template>
   <div class="container">
-     <div class="avatar-wrapper">
-       <div @click="goUserinfo" class="avatar">
-         <img src="/static/images/user.png" alt="">
-       </div>
-       <div>张瀚文</div>
-     </div>
+    <div class="avatar-wrapper">
+      <div @click="goUserinfo" class="avatar">
+        <open-data type="userAvatarUrl"></open-data>
+      </div>
+      <div>张瀚文</div>
+      <div class="edit-wrapper">
+        <i class="icon iconfont">&#xe669;</i>
+      </div>
+    </div>
 
     <div class="mine-item">
       我的预约
       <div class="more">
         查看更多预约
-        <i class="icon iconfont">&#xe640;</i>
+        <img src="/static/images/more.jpg" alt />
       </div>
     </div>
-     <div class="mine-item">
+    <div class="mine-item">
       我的照片
-      <i class="icon iconfont">&#xe640;</i>
+      <div class="more">
+        <img src="/static/images/more.jpg" alt />
+      </div>
     </div>
     <div class="mine-item">
       我的套餐
-      <i class="icon iconfont">&#xe640;</i>
+      <div class="more">
+        <img src="/static/images/more.jpg" alt />
+      </div>
     </div>
     <div class="mine-item">
       客服咨询
-      <i class="icon iconfont">&#xe640;</i>
+      <div class="more">
+        <img src="/static/images/more.jpg" alt />
+      </div>
     </div>
-    
-
   </div>
 </template>
 
 <script>
-
-
 export default {
-  
-  data () {
+  data() {
     return {
-      text:'我是我的页面'
-    }
+      text: "我是我的页面"
+    };
   },
 
- methods: {
-   goUserinfo() {
-     this.$router.push({ path: `../${'userInfo/main'}`});
-   }
- },
-}
+  methods: {
+    goUserinfo() {
+      this.$router.push({ path: `../${"userInfo/main"}` });
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -66,17 +70,23 @@ export default {
     flex-direction: row;
     align-items: center;
     margin-bottom: 15px;
-    
+    position: relative;
     .avatar {
       width: 70px;
       height: 70px;
       overflow: hidden;
       border-radius: 40px;
       margin: 0 20px;
+      border: 2px solid #fff;
       img {
         width: 100%;
         height: 100%;
       }
+    }
+    .edit-wrapper {
+      position: absolute;
+      top: 30px;
+      left: 90px;
     }
   }
   .mine-item {
@@ -88,7 +98,7 @@ export default {
     display: flex;
     align-items: center;
     border-radius: 0 0 5px 5px;
-    box-shadow:10rpx 10rpx 10rpx rgba(15,16,15,0.2);
+    box-shadow: 10rpx 10rpx 10rpx rgba(15, 15, 15, 0.1);
     box-sizing: border-box;
     padding: 0 10px;
     position: relative;
@@ -99,6 +109,11 @@ export default {
       height: 100%;
       display: flex;
       align-items: center;
+      color: #727272;
+      img {
+        width: 30px;
+        height: 15px;
+      }
     }
   }
 }

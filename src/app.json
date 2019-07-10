@@ -1,13 +1,18 @@
 {
   "pages": [
+    "pages/check/main",
+    "pages/comboAppointment/main",
+    
     "pages/mine/main",
     "pages/photoAlbum/main",
     "pages/photographerWorks/main",
-    "pages/check/main",
+    
     "pages/getUserInfo/main",
     "pages/index/main",
     "pages/combo/main",
     "pages/userInfo/main"
+  
+    
     
     
   ],

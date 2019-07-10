@@ -85,7 +85,7 @@ export default {
       position: relative;
       overflow: hidden;
       border-radius: 5px;
-      box-shadow:-8rpx 8rpx 10rpx rgba(15,16,15,0.2);
+      box-shadow:-8rpx 8rpx 10rpx rgba(15,15,15,0.2);
       img {
         position: absolute;
         top: 0;
@@ -97,6 +97,7 @@ export default {
         width: 100%;
         height: 30px;
         line-height: 30px;
+        text-align: center;
         box-sizing: border-box;
         padding-left: 10px;
         background: rgba(256,256,256,0.4);

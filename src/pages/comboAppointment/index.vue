@@ -38,19 +38,60 @@
           :key="index">{{item.name}}</div>
         </div>
       </div>
+      <div class="question-list">
+        <div class="title">5.什么时候拍摄？</div>
+        <div class="content">
+          <div class="date-wrapper">
+            <picker 
+              mode="date" 
+              :value="date" 
+              start="2018-01-01" 
+              @change="bindDateChange"> 
+                    <p class="picker">
+                      选择预约日期： {{date}}
+                    </p>
+            </picker>
+
+          </div>
+          <div class="time-wrapper">
+            <picker @change="bindTimeChange" @cancel="bindTimeCancel" :value="index" :range="timeArray" range-key="time">
+              <view class="picker">选择预约时间： {{time}}</view>
+            </picker>
+          
+          </div>
+        </div>
+      </div>
+      <div class="question-list">
+        <div class="title">6.您的联系电话？</div>
+        <div class="content">
+          <input class="ipt"
+              v-model="phoneNumber"
+              placeholder="请输入联系电话"
+              type="text"/>
+        </div>
+      </div>
     </div>
     <div class="btn">
       <div class="price">￥600</div>
-      <div class="confirm">提交订单</div>
+      <div class="confirm" @click="gopayOrder()">提交订单</div>
     </div>
   </div>
 </template>
 
 <script>
+import {get, post,postJSON} from "@/http/api"
 export default {
   data() {
     return {
       text: "我是默认页面",
+      phoneNumber:'',
+      date:'',
+      index: '',
+      time: '',
+      time_code: '',
+      timeArray:[],
+      timeShow: false,
+      Cameraman_id: '1',
       select1: '',
       select2: '',
       select3: '',
@@ -80,6 +121,9 @@ export default {
     };
   },
   methods: {
+    gopayOrder() {
+      this.$router.push({ path: `../${"payOrder/main"}` });
+    },
     qst1Click(item,index) {
       this.select1 = item.name
       this.qst1.forEach((ele,i) => {
@@ -119,6 +163,60 @@ export default {
           this.$set(this.qst4[i],'checked',false)
         }
       });
+    },
+    bindDateChange(e) {
+     
+      this.date = e.target.value
+      this.getDateStatus(this.Cameraman_id,e.target.value)
+    },
+    bindTimeChange(e) {
+      console.log(e)
+      
+      this.index = e.target.value
+      this.time = this.timeArray[e.target.value].time
+      this.time_code = this.timeArray[e.target.value].time_code
+      console.log(this.timeArray[e.target.value].time_code)
+     
+    },
+    getDateStatus(Cameraman_id,date) {
+      let params = {
+        url: /get_cameraman_time/,
+        data: {
+          Cameraman_id: Cameraman_id,
+          date: date
+        }
+        
+      };
+      postJSON(params).then(res=>{ 
+        console.log('查看某一天的时间',res)
+        this.parseDateStatus(res)
+        this.timeShow = true
+      }) 
+    },
+    parseDateStatus(arr) {
+     
+      let box = [];
+      let timearr = [
+        {time:'08:00 - 10:00',time_code: 1},
+        {time:'10:00 - 12:00',time_code: 2},
+        {time:'14:00 - 16:00',time_code: 3},
+        {time:'16:00 - 18:00',time_code: 4}
+      ]
+      if(arr.length==0) {
+        this.timeArray = timearr;
+      }else{
+        for(let i = timearr.length - 1; i >= 0; i--) {
+          for(let n=0; n<arr.length; n++) {
+            if(timearr[i].time_code == arr[n].time_code) {
+              console.log(timearr)
+              timearr.splice(i, 1)
+              break
+            }
+          }
+        }
+        this.timeArray = timearr
+      }
+      console.log('要显示是time',this.timeArray)
     },
   },
 };
@@ -182,7 +280,7 @@ export default {
       box-sizing: border-box;
       padding: 15px;
       box-shadow: 0rpx 10rpx 10rpx rgba(15, 15, 15, 0.1);
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       .active {
         background: #ccffff !important;
       }

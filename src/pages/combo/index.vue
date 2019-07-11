@@ -4,19 +4,19 @@
        <img src="/static/images/img5.jpg" alt="">
      </div>
      <div class="photo-album">
-      <div class="album-item">
+      <div class="album-item" @click="goMyyuyue()">
         <img src="/static/images/img2.jpg" alt="">
         <div class="album-name">个人写真</div>
       </div>
-      <div class="album-item">
+      <div class="album-item" @click="goMyyuyue()">
         <img src="/static/images/img1.jpg" alt="">
         <div class="album-name">双人写真</div>
       </div>
-      <div class="album-item">
+      <div class="album-item" @click="goMyyuyue()">
         <img src="/static/images/img4.jpg" alt="">
         <div class="album-name">多人写真</div>
       </div>
-      <div class="album-item">
+      <div class="album-item" @click="goMyyuyue()">
         <img src="/static/images/img3.jpg" alt="">
         <div class="album-name">毕业季</div>
       </div>
@@ -42,6 +42,11 @@ export default {
     return {
       text:'我是摄影师页面'
     }
+  },
+  methods: {
+    goMyyuyue() {
+      this.$router.push({ path: `../${'comboAppointment/main'}`});
+    },
   },
 
  

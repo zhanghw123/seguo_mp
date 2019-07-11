@@ -36,11 +36,11 @@
         <div class="album-name">日系</div>
       </div>
       <div class="album-item">
-        <img src="/static/images/timg3.jpg" alt="">
+        <img src="/static/images/timg3.jpg" @click="goComInfo()" alt="">
         <div class="album-name">古风</div>
       </div>
       <div class="album-item">
-        <img src="/static/images/timg4.jpg" alt="">
+        <img src="/static/images/timg4.jpg" @click="goComInfo()" alt="">
         <div class="album-name">复古</div>
       </div>
     </div>   

@@ -10,20 +10,20 @@
       </div>
     </div>
 
-    <div class="mine-item">
+    <div class="mine-item" @click="goMyYuyue()">
       我的预约
       <div class="more">
         查看更多预约
         <img src="/static/images/more.jpg" alt />
       </div>
     </div>
-    <div class="mine-item">
+    <div class="mine-item" @click="gomyPhotos()">
       我的照片
       <div class="more">
         <img src="/static/images/more.jpg" alt />
       </div>
     </div>
-    <div class="mine-item">
+    <div class="mine-item" @click="gomyCombo()">
       我的套餐
       <div class="more">
         <img src="/static/images/more.jpg" alt />
@@ -31,6 +31,7 @@
     </div>
     <div class="mine-item">
       客服咨询
+      <button open-type="contact" class="contact-btn"></button>
       <div class="more">
         <img src="/static/images/more.jpg" alt />
       </div>
@@ -49,7 +50,16 @@ export default {
   methods: {
     goUserinfo() {
       this.$router.push({ path: `../${"userInfo/main"}` });
-    }
+    },
+    goMyYuyue() {
+      this.$router.push({ path: `../${"myReservation/main"}` });
+    },
+    gomyPhotos() {
+      this.$router.push({ path: `../${"myPhotos/main"}` });
+    },
+    gomyCombo() {
+      this.$router.push({ path: `../${"myCombo/main"}` });
+    },
   }
 };
 </script>
@@ -102,6 +112,14 @@ export default {
     box-sizing: border-box;
     padding: 0 10px;
     position: relative;
+    .contact-btn {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+    }
     .more {
       position: absolute;
       right: 10px;

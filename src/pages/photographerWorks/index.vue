@@ -5,29 +5,22 @@
      </div>
      <div class="photo-album">
       <div class="album-item">
-        <img src="/static/images/timg1.jpg" alt="">
+        <img src="/static/images/timg1.jpg" @click="goComInfo()" alt="">
         <div class="album-name">小清新</div>
       </div>
       <div class="album-item">
-        <img src="/static/images/timg2.jpg" alt="">
+        <img src="/static/images/timg2.jpg" @click="goComInfo()" alt="">
         <div class="album-name">日系</div>
       </div>
       <div class="album-item">
-        <img src="/static/images/timg3.jpg" alt="">
+        <img src="/static/images/timg3.jpg" @click="goComInfo()" alt="">
         <div class="album-name">古风</div>
       </div>
       <div class="album-item">
-        <img src="/static/images/timg4.jpg" alt="">
+        <img src="/static/images/timg4.jpg" @click="goComInfo()" alt="">
         <div class="album-name">复古</div>
       </div>
-      <div class="album-item">
-        <img src="/static/images/timg1.jpg" alt="">
-        <div class="album-name">小清新</div>
-      </div>
-      <div class="album-item">
-        <img src="/static/images/timg2.jpg" alt="">
-        <div class="album-name">日系</div>
-      </div>
+      
     </div>  
   </div>
 </template>
@@ -41,6 +34,11 @@ export default {
     return {
       text:'我是摄影师页面'
     }
+  },
+  methods: {
+    goComInfo() {
+      this.$router.push({ path: `../${'photoAlbum/main'}`});
+    },
   },
 
  

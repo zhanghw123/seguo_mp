@@ -4,7 +4,7 @@
       <div @click="goUserinfo" class="avatar">
         <open-data type="userAvatarUrl"></open-data>
       </div>
-      <div>userName</div>
+      <div><open-data class="name" type="userNickName"></open-data></div>
       <div class="edit-wrapper">
         <i class="icon iconfont">&#xe669;</i>
       </div>

@@ -115,8 +115,8 @@ export default {
       qst4: [
         { name: "崇明", checked: false },
         { name: "鹿晗", checked: false },
-        { name: "姜旭", checked: false },
-        { name: "宋伟", checked: false }
+        { name: "陈冠希", checked: false },
+        { name: "吴亦凡", checked: false }
       ]
     };
   },
@@ -237,7 +237,7 @@ export default {
   width: 100%;
   height: 100%;
   display: flex;
-  background: #eff3f6;
+  background:white;
   flex-direction: column;
   box-sizing: border-box;
   .border {
@@ -269,7 +269,7 @@ export default {
     }
   }
   .question-wrapper {
-
+    
     flex:1;
     overflow: auto;
 
@@ -279,7 +279,7 @@ export default {
       background: #fff;
       box-sizing: border-box;
       padding: 15px;
-      box-shadow: 0rpx 10rpx 10rpx rgba(15, 15, 15, 0.1);
+      box-shadow: 0rpx 7rpx 7rpx rgba(15, 15, 15, 0.1);
       margin-bottom: 15px;
       .active {
         background: #ccffff !important;
@@ -291,7 +291,7 @@ export default {
         clear:both
       }
       .question-item {
-        padding: 5px 8px;
+        padding:0 5px;
         float: left;
         background: #e0e0e0;
         border-radius: 2px;

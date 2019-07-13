@@ -24,7 +24,7 @@
     </swiper>
     <div class="appointment" @click="goMyyuyue()">
       <div class="circle">预</div>
-      <div>个人写真拍摄</div>
+      <div>个 人 写 真 拍 摄</div>
     </div> 
     <div class="photo-album">
       <div class="album-item" @click="goComInfo()">
@@ -199,11 +199,12 @@ export default {
     flex-direction: row;
     align-items: center;
     width: 90%;
-    margin: 15px auto;
-    height: 50px;
+    margin: 25px auto;
+    height: 70px;
     background: #a8a9ab;
     border-radius: 25px;
-
+    color:white;
+    font-size:15px;
     .circle {
       width: 40px;
       height: 40px;
@@ -211,7 +212,10 @@ export default {
       border-radius: 20px;
       text-align: center;
       line-height: 40px;
-      margin: 0 10px;
+      margin: 0 15px;
+      font-size:20px;
+      font-weight:500;
+      color:black;
     }
   }
   .photo-album {
@@ -223,7 +227,7 @@ export default {
     justify-content:space-between;
     .album-item {
       width: 48%;
-      height: 120px;
+      height: 150px;
       background: #ccc;
       margin-bottom: 15px;
       position: relative;

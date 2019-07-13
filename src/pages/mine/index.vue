@@ -4,33 +4,33 @@
       <div @click="goUserinfo" class="avatar">
         <open-data type="userAvatarUrl"></open-data>
       </div>
-      <div>张瀚文</div>
+      <div>userName</div>
       <div class="edit-wrapper">
         <i class="icon iconfont">&#xe669;</i>
       </div>
     </div>
 
     <div class="mine-item" @click="goMyYuyue()">
-      我的预约
+      我 的 预 约
       <div class="more">
-        查看更多预约
+        查 看 更 多 预 约
         <img src="/static/images/more.jpg" alt />
       </div>
     </div>
     <div class="mine-item" @click="gomyPhotos()">
-      我的照片
+      我 的 照 片
       <div class="more">
         <img src="/static/images/more.jpg" alt />
       </div>
     </div>
     <div class="mine-item" @click="gomyCombo()">
-      我的套餐
+      我 的 套 餐
       <div class="more">
         <img src="/static/images/more.jpg" alt />
       </div>
     </div>
     <div class="mine-item">
-      客服咨询
+      客 服 咨 询
       <button open-type="contact" class="contact-btn"></button>
       <div class="more">
         <img src="/static/images/more.jpg" alt />
@@ -69,7 +69,7 @@ export default {
   width: 100%;
   height: 100%;
   display: flex;
-  background: #eff3f6;
+  background: white;
   flex-direction: column;
   box-sizing: border-box;
   .avatar-wrapper {
@@ -101,7 +101,7 @@ export default {
   }
   .mine-item {
     font-size: 14px;
-    width: 90%;
+    width: 85%;
     height: 60px;
     background: #fff;
     margin: 0 auto 20px;
@@ -128,6 +128,7 @@ export default {
       display: flex;
       align-items: center;
       color: #727272;
+      font-size:10px;
       img {
         width: 30px;
         height: 15px;

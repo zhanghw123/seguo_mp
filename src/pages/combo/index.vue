@@ -83,10 +83,10 @@ export default {
     flex-wrap:wrap;
     justify-content:space-between;
     .album-item {
-      width: 48%;
-      height: 120px;
+      width: 46%;
+      height: 140px;
       background: #ccc;
-      margin-bottom: 15px;
+      margin-bottom: 28px;
       position: relative;
       overflow: hidden;
       border-radius: 5px;
